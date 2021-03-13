@@ -1,0 +1,32 @@
+<h1>book detail</h1>
+  <%= @book.title %>
+  <%= @book.body %>
+  <%= link_to '編集', edit_book_path(@book.id) %>
+  <%= link_to '削除', book_path(@book.id), method: :delete %>
+
+<h1>コメント一覧</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>投稿者</th>
+        <th>コメント</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= attachment_image_tag comment.user, :profile_image, format: 'jpeg', fallback: "20190916_230848.jpg", size: "40x40" %><br>
+          <%= comment.user.name %>
+        </td>
+        <td><%= comment.comment %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<h3>コメント投稿</h3>
+  <%= form_with model:@comment, url:book_comments_path(@book.id), local:true do |f| %>
+  <%= f.text_field :comment %>
+  <%= f.submit 'コメント投稿！' %>
+  <% end %>

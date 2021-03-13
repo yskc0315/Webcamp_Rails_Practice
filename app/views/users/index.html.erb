@@ -1,0 +1,22 @@
+<h1>Users#index</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>投稿者</th>
+      <th>投稿件数</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "20190916_230848.jpg", size: "40x40" %></td>
+      <td><%= link_to user.name, user_path(user.id) %></td>
+      <td><%= link_to "#{user.books.count}件", user_path(user.id) %></td>
+      <td><%= link_to "編集", edit_user_path(user) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

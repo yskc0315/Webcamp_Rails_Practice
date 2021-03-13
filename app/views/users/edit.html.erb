@@ -1,0 +1,7 @@
+<h1>User/edit</h1>
+
+<%= form_with model:@user, local:true do |f| %>
+  <%= f.text_field :name %>
+  <%= f.attachment_field :profile_image %>
+  <%= f.submit %>
+<% end %>
